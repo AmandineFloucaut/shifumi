@@ -50,6 +50,10 @@ h1 {
     display: none;
 }
 
+.choice__validated--img {
+    width: 10%;
+}
+
 .game__user--img,
 .game__computer--img {
     width: 30%;
