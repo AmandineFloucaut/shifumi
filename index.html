@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/shifumi.css">
+    <title>Shifumi en ligne</title>
+</head>
+<body>
+
+    <h1> Shifumi en ligne </h1>
+
+    <hr>
+
+    <div class="container">
+
+        <div id="play__possibilities" class="play__possibilities--display">
+
+            <p> Atteins 5 points avant l'ordinateur pour gagner ! </p>
+
+            <img src="assets/img/pierre.png" alt="pierre">
+            <img src="assets/img/feuille.png" alt="feuille">
+            <img src="assets/img/ciseaux.png" alt="ciseaux">
+
+        </div> <!-- End div .play_possibilities -->
+
+        <div id="game" class="game game__validated--display">
+
+            <div class="game__user">
+                <h3> Vous </h3>
+
+                <div id="game__user-validated" class="game__user-validated--display">
+                    <img src="" alt="" class="game__user--img">
+                </div>
+            </div>
+
+            <div class="game--winner">
+                <span> <!-- Indicate turn number and chen the game is over --> </span>
+                <p> <!-- Indicate round's winner --> </p>
+            </div>
+
+            <div class="game__computer">
+                <h3> L'ordinateur </h3>
+
+                <div id="game__computer-validated" class="game__computer-validated--display">
+                    <img src="" alt="" class="game__computer--img">
+                </div>
+            </div>
+
+        </div> <!-- End div .game -->
+
+        <button id="play-again" class="play-again--hidden"> Rejouer </button>
+
+    </div> <!-- End div .container -->
+
+    <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+.container,
+h1 {
+    text-align: center;
+}
+
+.container {
+    margin: 4rem;
+}
+
+
+/* Play possibilities */
+
+.play__possibilities--display {
+    display: block;
+}
+
+.play__possibilities--hidden {
+    display: none;
+}
+
+#play__possibilities>img {
+    width: 8%;
+    margin: 2rem;
+}
+
+
+/* Game validated */
+
+.game__validated--display{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.game__user,
+.game__computer {
+    width: 30%;
+    margin: 1rem 3rem;
+}
+
+.game__user-validated--display,
+.game__computer-validated--display {
+    display: block;
+    margin: 1rem;
+}
+
+.game__user-validated--hidden,
+.game__computer-validated--hidden {
+    display: none;
+}
+
+.game__user--img,
+.game__computer--img {
+    width: 30%;
+}
+
+button#play-again {
+    width: 20%;
+    text-align: center;
+    margin: 3rem auto 1rem auto;
+}
+
+.play-again--hidden {
+    display: none;
+}
+
+.play-again--display {
+    display: block;
+}
