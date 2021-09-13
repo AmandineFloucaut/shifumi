@@ -1,4 +1,3 @@
-console.log('%c' + "app.js chargé", 'color: #0bf; font-size: 1rem; background-color:#fff');
 
 const shifumi = {
     possibilities : [
@@ -46,6 +45,34 @@ const shifumi = {
 
         let computerChoiceValidated = shifumi.computerChoice(computerChoice);
         console.log(computerChoiceValidated);
+
+
+            if(userChoiceValidated ==  computerChoiceValidated){
+                shifumi.turn += 1;
+                shifumi.endGameText.textContent = "Round " + shifumi.turn;
+                shifumi.winnerText.textContent = "Egalité !";
+            }
+            else if(
+                (userChoiceValidated == shifumi.possibilities[0] && computerChoiceValidated == shifumi.possibilities[1])
+                || (userChoiceValidated == shifumi.possibilities[1] && computerChoiceValidated == shifumi.possibilities[2])
+                || (userChoiceValidated == shifumi.possibilities[2] && computerChoiceValidated == shifumi.possibilities[0])
+                ){
+                    shifumi.pointsComputer += 1;
+                    shifumi.turn += 1;
+                    shifumi.endGameText.textContent = "Round " + shifumi.turn;
+                    shifumi.winnerText.textContent = "L'ordinateur gagne !";
+                }
+            else if(
+                (userChoiceValidated == shifumi.possibilities[0] && computerChoiceValidated == shifumi.possibilities[2])
+                || (userChoiceValidated == shifumi.possibilities[1] && computerChoiceValidated == shifumi.possibilities[0])
+                || (userChoiceValidated == shifumi.possibilities[2] && computerChoiceValidated == shifumi.possibilities[1])
+                ){
+                    shifumi.pointsUser += 1;
+                    shifumi.turn += 1;
+                    shifumi.endGameText.textContent = "Round " + shifumi.turn;
+                    shifumi.winnerText.textContent = "Vous gagnez !";
+                }
+
     },
 
     /**
@@ -74,7 +101,7 @@ const shifumi = {
         userChoicesContainer.appendChild(imgChoiceElement);
 
         // Retrieve just name of touch image for comparison with computer choice and return this
-        let userChoice = imageSource.slice(48);
+        let userChoice = imageSource.slice(36);
 
         return userChoice;
     },
