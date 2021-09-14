@@ -10,6 +10,10 @@ const shifumi = {
     pointsUser : 0,
     pointsComputer : 0,
 
+    // Targeting html elements for display points
+    pointsUserElement : document.querySelector('#user span'),
+    pointsComputerElement : document.querySelector('#computer span'),
+
     // Targeting div element play-possibilities for display or hidden
     playPossibilities : document.getElementById('play-possibilities'),
 
@@ -18,6 +22,10 @@ const shifumi = {
     roundGameText : document.querySelector('.game--winner span'),
 
     // Targeting div element for display history elements playing
+    userChoicesContainer : document.getElementById('game__user-validated'),
+    computerChoicesContainer : document.getElementById('game__computer-validated'),
+
+    // Targeting img element for display game in progress
     imgUserValidatedElement : document.querySelector('.game__user--img'),
     imgComputerValidatedElement : document.querySelector('.game__computer--img'),
 
@@ -69,6 +77,7 @@ const shifumi = {
                 shifumi.turn += 1;
                 shifumi.roundGameText.textContent = "Round " + shifumi.turn;
                 shifumi.winnerText.textContent = "L'ordinateur gagne !";
+                shifumi.pointsComputerElement.textContent = shifumi.pointsComputer;
             }
         else if(
             (userChoiceValidated === shifumi.possibilities[0] && computerChoiceValidated === shifumi.possibilities[2])
@@ -78,12 +87,12 @@ const shifumi = {
                 shifumi.pointsUser += 1;
                 shifumi.turn += 1;
                 shifumi.roundGameText.textContent = "Round " + shifumi.turn;
-                shifumi.winnerText.textContent = "Vous gagnez !";
+                shifumi.winnerText.textContent = "Tu gagnes !";
+                shifumi.pointsUserElement.textContent = shifumi.pointsUser;
             }
 
         // Function define line 83
         shifumi.endGame(shifumi.pointsUser, shifumi.pointsComputer);
-
     },
 
     /**
@@ -91,6 +100,14 @@ const shifumi = {
      * @param {click} event : click on button play again
      */
     handlePlayAgain : function(event){
+
+        while (shifumi.userChoicesContainer.firstChild) {
+            shifumi.userChoicesContainer.removeChild(shifumi.userChoicesContainer.firstChild);
+        }
+
+        while (shifumi.computerChoicesContainer.firstChild) {
+            shifumi.computerChoicesContainer.removeChild(shifumi.computerChoicesContainer.firstChild);
+        }
 
         shifumi.buttonPlayAgain.className = "play-again--hidden";
 
@@ -102,9 +119,11 @@ const shifumi = {
         shifumi.imgUserValidatedElement.src = "";
         shifumi.imgComputerValidatedElement.src = "";
 
-        document.getElementById("game__computer-validated").className = "game__computer-validated--hidden";
+        shifumi.pointsUserElement.textContent = "0";
+        shifumi.pointsComputerElement.textContent = "0";
 
-        document.getElementById("game__user-validated").className = "game__user-validated--hidden";
+        shifumi.pointsComputer = 0;
+        shifumi.pointsUser = 0;
     },
 
     /**
@@ -123,13 +142,20 @@ const shifumi = {
             shifumi.imgUserValidatedElement.src = "";
             shifumi.imgComputerValidatedElement.src = "";
 
+            // Add class endGame for update img display (in block)
+            let imgValidatedElement = document.querySelectorAll('.choice__validated--img');
+
+            for(let img of imgValidatedElement) {
+                img.classList.add('endGame');
+            }
+
             if(pointsUser == 5){
                 shifumi.roundGameText.textContent = "Partie terminée !"
-                shifumi.winnerText.textContent = "Bravo vous avez battu l'ordinateur en " + shifumi.turn + " round !";
+                shifumi.winnerText.textContent = "Bravo tu as battu l'ordinateur en " + shifumi.turn + " round !";
             }
             else {
                 shifumi.roundGameText.textContent = "Partie terminée !"
-                shifumi.winnerText.textContent = "L'ordinateur vous a battu en " + shifumi.turn + " , essayez encore !";
+                shifumi.winnerText.textContent = "L'ordinateur t'a battu en " + shifumi.turn + " round, essaie encore !";
             }
         }
     },
@@ -150,19 +176,17 @@ const shifumi = {
         // When user click on one picture, insert this in html for display game validated
         shifumi.imgUserValidatedElement.src = imageSource;
 
-        // Select div container for display game user validated on each turn
-        let userChoicesContainer = document.getElementById('game__user-validated');
         // Create img element and insert in src attribut the user choice (where he's click)
         let imgChoiceElement = document.createElement("img");
         imgChoiceElement.src = shifumi.imgUserValidatedElement.src;
-        console.log(imgChoiceElement.src);
+
         // Insert class name for css and insert in container
         imgChoiceElement.className = "choice__validated--img";
-        userChoicesContainer.appendChild(imgChoiceElement);
+        shifumi.userChoicesContainer.appendChild(imgChoiceElement);
 
         // Retrieve just name of touch image for comparison with computer choice and return this
         let userChoice = imageSource.slice(36);
-        console.log(userChoice);
+
         return userChoice;
     },
 
@@ -183,26 +207,16 @@ const shifumi = {
         // Define src of computer choice validated img (relative path)
         shifumi.imgComputerValidatedElement.src = "assets/img/" + computerChoice;
 
-        // Select div container for display game computer validated on each turn
-        let computerChoicesContainer = document.getElementById('game__computer-validated');
         // Create img element and insert in src attribut the computer choice (where he's click)
         let imgChoiceElement = document.createElement("img");
         imgChoiceElement.src = shifumi.imgComputerValidatedElement.src;
         // Insert class name for css and insert in container
         imgChoiceElement.className = "choice__validated--img";
-        computerChoicesContainer.appendChild(imgChoiceElement);
+        shifumi.computerChoicesContainer.appendChild(imgChoiceElement);
 
-        // return name of picture chocie by copmputer (for comparate with userChoice)
+        // return name of picture choice by computer (for comparate with userChoice)
         return computerChoice;
     }
 }
 
 document.addEventListener('DOMContentLoaded', shifumi.init);
-
-// Debug
-// console.log(shifumi.playPossibilities);
-// console.log(shifumi.winnerText);
-// console.log(shifumi.roundGameText);
-// console.log(shifumi.imgUserValidatedElement);
-// console.log(shifumi.imgComputerValidatedElement);
-// console.log(shifumi.buttonPlayAgain);

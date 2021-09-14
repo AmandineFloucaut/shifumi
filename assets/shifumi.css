@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .container,
 h1 {
     text-align: center;
@@ -37,7 +41,7 @@ h1 {
 .game__user,
 .game__computer {
     /* width: 33%; */
-    margin: 1rem 2rem;
+    margin: 1rem 0.5rem;
     font-size: 0.8rem;
 }
 
@@ -56,13 +60,19 @@ h1 {
     width: 30%;
 }
 
+.endGame {
+    /* width: 30%; */
+    display: block;
+    margin: 0.2rem auto;
+}
+
 .game__user--img,
 .game__computer--img {
-    width: 30%;
+    width: 50%;
 }
 
 button#play-again {
-    width: 20%;
+    width: 40%;
     text-align: center;
     margin: 3rem auto 1rem auto;
 }
