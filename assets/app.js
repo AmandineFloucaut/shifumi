@@ -1,5 +1,5 @@
-
 const shifumi = {
+
     possibilities : [
         'pierre.png',
         'feuille.png',
@@ -10,11 +10,14 @@ const shifumi = {
     pointsUser : 0,
     pointsComputer : 0,
 
+    // Target div element play-possibilities for display or hidden
     playPossibilities : document.getElementById('play-possibilities'),
 
+    // Target span and p element for display number round and text for indicate the winner
     winnerText : document.querySelector('.game--winner p'),
-    endGameText : document.querySelector('.game--winner span'),
+    roundGameText : document.querySelector('.game--winner span'),
 
+    // Target div element for display history elements playing
     imgUserValidatedElement : document.querySelector('.game__user--img'),
     imgComputerValidatedElement : document.querySelector('.game__computer--img'),
 
@@ -34,8 +37,16 @@ const shifumi = {
         for(let image of imgPlayPossibilities){
             image.addEventListener('click', shifumi.handleWinnerGame);
         }
+
+        shifumi.buttonPlayAgain.addEventListener('click', shifumi.handlePlayAgain);
     },
 
+
+    /**
+     * Function for comparate pictures choice by user and computer
+     * @param {string} userChoice : name picture
+     * @param {string} computerChoice : name picture
+     */
     handleWinnerGame : function(userChoice, computerChoice){
         // Debug
         console.log('handle winner game function');
@@ -49,7 +60,7 @@ const shifumi = {
 
             if(userChoiceValidated ==  computerChoiceValidated){
                 shifumi.turn += 1;
-                shifumi.endGameText.textContent = "Round " + shifumi.turn;
+                shifumi.roundGameText.textContent = "Round " + shifumi.turn;
                 shifumi.winnerText.textContent = "Egalité !";
             }
             else if(
@@ -59,7 +70,7 @@ const shifumi = {
                 ){
                     shifumi.pointsComputer += 1;
                     shifumi.turn += 1;
-                    shifumi.endGameText.textContent = "Round " + shifumi.turn;
+                    shifumi.roundGameText.textContent = "Round " + shifumi.turn;
                     shifumi.winnerText.textContent = "L'ordinateur gagne !";
                 }
             else if(
@@ -69,10 +80,61 @@ const shifumi = {
                 ){
                     shifumi.pointsUser += 1;
                     shifumi.turn += 1;
-                    shifumi.endGameText.textContent = "Round " + shifumi.turn;
+                    shifumi.roundGameText.textContent = "Round " + shifumi.turn;
                     shifumi.winnerText.textContent = "Vous gagnez !";
                 }
 
+        // Function define line 83
+        shifumi.endGame(shifumi.pointsUser, shifumi.pointsComputer);
+
+    },
+
+    /**
+     * Function for play again when user click on the button
+     * @param {click} event : click on button play again
+     */
+    handlePlayAgain : function(event){
+
+        shifumi.buttonPlayAgain.className = "play-again--hidden";
+
+        shifumi.playPossibilities.className = "play__possibilities--display";
+
+        shifumi.roundGameText.textContent = "";
+        shifumi.winnerText.textContent = "";
+
+        shifumi.imgUserValidatedElement.src = "";
+        shifumi.imgComputerValidatedElement.src = "";
+
+        document.getElementById("game__computer-validated").className = "game__computer-validated--hidden";
+
+        document.getElementById("game__user-validated").className = "game__user-validated--hidden";
+    },
+
+    /**
+     * Function for compare points user and computer and for stop the game
+     * @param {int} pointsUser
+     * @param {int} pointsComputer
+     */
+    endGame : function(pointsUser, pointsComputer){
+
+        if(pointsUser == 5 || pointsComputer == 5){
+
+            shifumi.playPossibilities.className = "play__possibilities--hidden";
+
+            shifumi.buttonPlayAgain.className = "play-again--display";
+
+            shifumi.imgUserValidatedElement.src = "";
+            shifumi.imgComputerValidatedElement.src = "";
+
+            if(pointsUser == 5){
+                shifumi.roundGameText.textContent = "Partie terminée !"
+                shifumi.winnerText.textContent = "Bravo vous avez battu l'ordinateur !";
+            }
+            else {
+                shifumi.roundGameText.textContent = "Partie terminée !"
+                shifumi.winnerText.textContent = "L'ordinateur vous a battu, essayez encore !";
+            }
+        }
     },
 
     /**
@@ -106,6 +168,11 @@ const shifumi = {
         return userChoice;
     },
 
+    /**
+     * Function for define random choice computeur
+     * @param {string} computerChoice
+     * @returns
+     */
     computerChoice : function(computerChoice){
         // Debug
         console.log('computer choice function');
@@ -137,7 +204,7 @@ document.addEventListener('DOMContentLoaded', shifumi.init);
 // Debug
 // console.log(shifumi.playPossibilities);
 // console.log(shifumi.winnerText);
-// console.log(shifumi.endGameText);
+// console.log(shifumi.roundGameText);
 // console.log(shifumi.imgUserValidatedElement);
 // console.log(shifumi.imgComputerValidatedElement);
 // console.log(shifumi.buttonPlayAgain);
