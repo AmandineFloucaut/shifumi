@@ -10,14 +10,14 @@ const shifumi = {
     pointsUser : 0,
     pointsComputer : 0,
 
-    // Target div element play-possibilities for display or hidden
+    // Targeting div element play-possibilities for display or hidden
     playPossibilities : document.getElementById('play-possibilities'),
 
-    // Target span and p element for display number round and text for indicate the winner
+    // Targeting span and p element for display number round and text for indicate the winner
     winnerText : document.querySelector('.game--winner p'),
     roundGameText : document.querySelector('.game--winner span'),
 
-    // Target div element for display history elements playing
+    // Targeting div element for display history elements playing
     imgUserValidatedElement : document.querySelector('.game__user--img'),
     imgComputerValidatedElement : document.querySelector('.game__computer--img'),
 
@@ -52,37 +52,34 @@ const shifumi = {
         console.log('handle winner game function');
 
         let userChoiceValidated = shifumi.userChoice(userChoice);
-        console.log(userChoiceValidated);
 
         let computerChoiceValidated = shifumi.computerChoice(computerChoice);
-        console.log(computerChoiceValidated);
 
-
-            if(userChoiceValidated ==  computerChoiceValidated){
+        if(userChoiceValidated ===  computerChoiceValidated){
+            shifumi.turn += 1;
+            shifumi.roundGameText.textContent = "Round " + shifumi.turn;
+            shifumi.winnerText.textContent = "Egalité !";
+        }
+        else if(
+            (userChoiceValidated === shifumi.possibilities[0] && computerChoiceValidated === shifumi.possibilities[1])
+            || (userChoiceValidated === shifumi.possibilities[1] && computerChoiceValidated === shifumi.possibilities[2])
+            || (userChoiceValidated === shifumi.possibilities[2] && computerChoiceValidated === shifumi.possibilities[0])
+            ){
+                shifumi.pointsComputer += 1;
                 shifumi.turn += 1;
                 shifumi.roundGameText.textContent = "Round " + shifumi.turn;
-                shifumi.winnerText.textContent = "Egalité !";
+                shifumi.winnerText.textContent = "L'ordinateur gagne !";
             }
-            else if(
-                (userChoiceValidated == shifumi.possibilities[0] && computerChoiceValidated == shifumi.possibilities[1])
-                || (userChoiceValidated == shifumi.possibilities[1] && computerChoiceValidated == shifumi.possibilities[2])
-                || (userChoiceValidated == shifumi.possibilities[2] && computerChoiceValidated == shifumi.possibilities[0])
-                ){
-                    shifumi.pointsComputer += 1;
-                    shifumi.turn += 1;
-                    shifumi.roundGameText.textContent = "Round " + shifumi.turn;
-                    shifumi.winnerText.textContent = "L'ordinateur gagne !";
-                }
-            else if(
-                (userChoiceValidated == shifumi.possibilities[0] && computerChoiceValidated == shifumi.possibilities[2])
-                || (userChoiceValidated == shifumi.possibilities[1] && computerChoiceValidated == shifumi.possibilities[0])
-                || (userChoiceValidated == shifumi.possibilities[2] && computerChoiceValidated == shifumi.possibilities[1])
-                ){
-                    shifumi.pointsUser += 1;
-                    shifumi.turn += 1;
-                    shifumi.roundGameText.textContent = "Round " + shifumi.turn;
-                    shifumi.winnerText.textContent = "Vous gagnez !";
-                }
+        else if(
+            (userChoiceValidated === shifumi.possibilities[0] && computerChoiceValidated === shifumi.possibilities[2])
+            || (userChoiceValidated === shifumi.possibilities[1] && computerChoiceValidated === shifumi.possibilities[0])
+            || (userChoiceValidated === shifumi.possibilities[2] && computerChoiceValidated === shifumi.possibilities[1])
+            ){
+                shifumi.pointsUser += 1;
+                shifumi.turn += 1;
+                shifumi.roundGameText.textContent = "Round " + shifumi.turn;
+                shifumi.winnerText.textContent = "Vous gagnez !";
+            }
 
         // Function define line 83
         shifumi.endGame(shifumi.pointsUser, shifumi.pointsComputer);
@@ -128,11 +125,11 @@ const shifumi = {
 
             if(pointsUser == 5){
                 shifumi.roundGameText.textContent = "Partie terminée !"
-                shifumi.winnerText.textContent = "Bravo vous avez battu l'ordinateur !";
+                shifumi.winnerText.textContent = "Bravo vous avez battu l'ordinateur en " + shifumi.turn + " round !";
             }
             else {
                 shifumi.roundGameText.textContent = "Partie terminée !"
-                shifumi.winnerText.textContent = "L'ordinateur vous a battu, essayez encore !";
+                shifumi.winnerText.textContent = "L'ordinateur vous a battu en " + shifumi.turn + " , essayez encore !";
             }
         }
     },
@@ -158,13 +155,14 @@ const shifumi = {
         // Create img element and insert in src attribut the user choice (where he's click)
         let imgChoiceElement = document.createElement("img");
         imgChoiceElement.src = shifumi.imgUserValidatedElement.src;
+        console.log(imgChoiceElement.src);
         // Insert class name for css and insert in container
         imgChoiceElement.className = "choice__validated--img";
         userChoicesContainer.appendChild(imgChoiceElement);
 
         // Retrieve just name of touch image for comparison with computer choice and return this
         let userChoice = imageSource.slice(36);
-
+        console.log(userChoice);
         return userChoice;
     },
 

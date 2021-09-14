@@ -4,7 +4,7 @@ h1 {
 }
 
 .container {
-    margin: 4rem;
+    margin: 2rem;
 }
 
 
@@ -19,8 +19,8 @@ h1 {
 }
 
 #play-possibilities>img {
-    width: 8%;
-    margin: 2rem;
+    width: 20%;
+    margin: 0.5rem;
 }
 
 
@@ -31,12 +31,14 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    font-size: 0.8rem;
 }
 
 .game__user,
 .game__computer {
-    width: 30%;
-    margin: 1rem 3rem;
+    /* width: 33%; */
+    margin: 1rem 2rem;
+    font-size: 0.8rem;
 }
 
 .game__user-validated--display,
@@ -51,7 +53,7 @@ h1 {
 }
 
 .choice__validated--img {
-    width: 10%;
+    width: 30%;
 }
 
 .game__user--img,
@@ -72,3 +74,29 @@ button#play-again {
 .play-again--display {
     display: block;
 }
+
+
+/* Media queries
+
+.container {
+    margin: 4rem;
+}
+
+#play-possibilities>img {
+    width: 8%;
+    margin: 2rem;
+}
+
+.game__user,
+.game__computer {
+    width: 30%;
+    margin: 1rem 3rem;
+}
+
+.game__user,
+.game__computer {
+    width: 33%;
+    margin: 1rem 2rem;
+    font-size: 0.8rem;
+}
+*/
