@@ -57,7 +57,10 @@ const shifumi = {
      */
     handleWinnerGame : function(userChoice, computerChoice){
         // Debug
-        console.log('handle winner game function');
+        //console.log('handle winner game function');
+
+        console.log(shifumi.pointsComputer);
+        console.log(shifumi.pointsUser);
 
         let userChoiceValidated = shifumi.userChoice(userChoice);
 
@@ -167,7 +170,7 @@ const shifumi = {
      */
     userChoice : function(event){
         // Debug
-        console.log('user choice function');
+        //console.log('user choice function');
 
         let imgElementChoice = event.currentTarget;
 
@@ -197,7 +200,7 @@ const shifumi = {
      */
     computerChoice : function(computerChoice){
         // Debug
-        console.log('computer choice function');
+        //console.log('computer choice function');
 
         // Generate random number for use this like index of possibilities array
         // DOC https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math/floor && https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Math/random
