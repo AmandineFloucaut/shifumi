@@ -57,25 +57,37 @@ const shifumi = {
      */
     handleWinnerGame : function(userChoice, computerChoice){
         // Debug
-        //console.log('handle winner game function');
+        console.log('handle winner game function');
 
         console.log(shifumi.pointsComputer);
         console.log(shifumi.pointsUser);
 
         let userChoiceValidated = shifumi.userChoice(userChoice);
-
+        // Debug
+        console.log(userChoiceValidated);
         let computerChoiceValidated = shifumi.computerChoice(computerChoice);
+        // Debug
+        console.log(computerChoiceValidated);
 
         if(userChoiceValidated ===  computerChoiceValidated){
+            // Debug
+            console.log('égalité');
             shifumi.turn += 1;
+            // Debug
+            console.log(shifumi.turn);
             shifumi.roundGameText.textContent = "Round " + shifumi.turn;
+            // Debug
+            console.log(shifumi.roundGameText.textContent);
             shifumi.winnerText.textContent = "Egalité !";
+            console.log(shifumi.winnerText.textContent);
         }
         else if(
             (userChoiceValidated === shifumi.possibilities[0] && computerChoiceValidated === shifumi.possibilities[1])
             || (userChoiceValidated === shifumi.possibilities[1] && computerChoiceValidated === shifumi.possibilities[2])
             || (userChoiceValidated === shifumi.possibilities[2] && computerChoiceValidated === shifumi.possibilities[0])
             ){
+                // Debug
+                console.log('ordi gagne');
                 shifumi.pointsComputer += 1;
                 shifumi.turn += 1;
                 shifumi.roundGameText.textContent = "Round " + shifumi.turn;
@@ -87,6 +99,8 @@ const shifumi = {
             || (userChoiceValidated === shifumi.possibilities[1] && computerChoiceValidated === shifumi.possibilities[0])
             || (userChoiceValidated === shifumi.possibilities[2] && computerChoiceValidated === shifumi.possibilities[1])
             ){
+                // Debug
+                console.log('user gagne');
                 shifumi.pointsUser += 1;
                 shifumi.turn += 1;
                 shifumi.roundGameText.textContent = "Round " + shifumi.turn;
@@ -103,6 +117,8 @@ const shifumi = {
      * @param {click} event : click on button play again
      */
     handlePlayAgain : function(event){
+
+        console.log('play again function');
 
         while (shifumi.userChoicesContainer.firstChild) {
             shifumi.userChoicesContainer.removeChild(shifumi.userChoicesContainer.firstChild);
@@ -127,6 +143,7 @@ const shifumi = {
 
         shifumi.pointsComputer = 0;
         shifumi.pointsUser = 0;
+        shifumi.turn = 0;
     },
 
     /**
@@ -136,7 +153,9 @@ const shifumi = {
      */
     endGame : function(pointsUser, pointsComputer){
 
+        console.log("end game function");
         if(pointsUser == 5 || pointsComputer == 5){
+            console.log("end game points user or computer = 5");
 
             shifumi.playPossibilities.className = "play__possibilities--hidden";
 
@@ -153,10 +172,12 @@ const shifumi = {
             }
 
             if(pointsUser == 5){
+                console.log("end game points user = 5");
                 shifumi.roundGameText.textContent = "Partie terminée !"
                 shifumi.winnerText.textContent = "Bravo tu as battu l'ordinateur en " + shifumi.turn + " round !";
             }
             else {
+                console.log("end game points computer = 5");
                 shifumi.roundGameText.textContent = "Partie terminée !"
                 shifumi.winnerText.textContent = "L'ordinateur t'a battu en " + shifumi.turn + " round, essaie encore !";
             }
