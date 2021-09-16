@@ -209,7 +209,8 @@ const shifumi = {
         shifumi.userChoicesContainer.appendChild(imgChoiceElement);
 
         // Retrieve just name of touch image for comparison with computer choice and return this
-        let userChoice = imageSource.slice(36);
+        // WARNING : in dev envireonment, slice(36)
+        let userChoice = imageSource.slice(54);
 
         return userChoice;
     },
