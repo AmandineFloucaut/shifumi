@@ -4,15 +4,25 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.container,
-h1 {
+body {
+    background-color: #FFF2BA;
+}
+
+h1,
+.game_container
+ {
     text-align: center;
 }
 
-.container {
+.presentation__container,
+.game_container {
     margin: 3rem 2rem;
     padding: 0.5rem;
     border: 2px solid burlywood;
+}
+
+.presentation__container {
+    padding: 1rem;
 }
 
 
@@ -99,7 +109,7 @@ button#play-again {
 /* Media queries */
 
 @media(min-width: 600px){
-    .container {
+    .game_container {
         margin: 4rem 2rem;
         border: 2px solid black;
     }
@@ -128,7 +138,7 @@ button#play-again {
 
 @media(min-width: 1100px){
 
-    .container {
+    .game_container {
         font-size: 1.5rem;
         border: 3px solid grey;
     }
