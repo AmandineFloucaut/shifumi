@@ -1,5 +1,7 @@
 const shifumi = {
 
+    presentationContainers : document.querySelectorAll('.intro--display'),
+
     possibilities : [
         'pierre.png',
         'feuille.png',
@@ -38,6 +40,11 @@ const shifumi = {
         // Debug
         console.log('init function');
 
+        let arrowElement = document.querySelector('.arrow');
+
+        console.log(arrowElement);
+        arrowElement.addEventListener('click', shifumi.handleStartGame());
+
         // Retrieve play possibilities image for found event click
         let imgPlayPossibilities = document.querySelectorAll('.play-possibilities__img');
 
@@ -47,6 +54,11 @@ const shifumi = {
         }
 
         shifumi.buttonPlayAgain.addEventListener('click', shifumi.handlePlayAgain);
+    },
+
+    handleStartGame : function(event){
+
+        document.querySelector(".game_container--hidden").classList.add("game-container--display");
     },
 
 
@@ -155,6 +167,7 @@ const shifumi = {
 
         console.log("end game function");
         if(pointsUser == 5 || pointsComputer == 5){
+            // Debug
             console.log("end game points user or computer = 5");
 
             shifumi.playPossibilities.className = "play__possibilities--hidden";
@@ -171,16 +184,38 @@ const shifumi = {
                 img.classList.add('endGame');
             }
 
+            shifumi.roundGameText.textContent = "Partie terminée !"
+
             if(pointsUser == 5){
+                // Debug
                 console.log("end game points user = 5");
-                shifumi.roundGameText.textContent = "Partie terminée !"
                 shifumi.winnerText.textContent = "Bravo tu as battu l'ordinateur en " + shifumi.turn + " round !";
             }
             else {
+                // Debug
                 console.log("end game points computer = 5");
-                shifumi.roundGameText.textContent = "Partie terminée !"
                 shifumi.winnerText.textContent = "L'ordinateur t'a battu en " + shifumi.turn + " round, essaie encore !";
             }
+        }
+    },
+
+    displayIntroContainer : function(){
+
+        for(let container of shifumi.presentationContainers){
+            console.log(container);
+
+            container.classList.remove("intro--display");
+            container.classList.add("intro--hidden");
+
+        }
+    },
+
+    hiddenIntroContainer : function(){
+        for(let container of shifumi.presentationContainers){
+            console.log(container);
+            container.classList.remove("intro--hidden");
+            container.classList.add("intro--display");
+
         }
     },
 
@@ -214,6 +249,8 @@ const shifumi = {
 
         // WARNING : in prod environment, slice(54)
         //let userChoice = imageSource.slice(54);
+
+        shifumi.displayIntroContainer();
 
         return userChoice;
     },
