@@ -2,6 +2,8 @@ const shifumi = {
 
     presentationContainers : document.querySelectorAll('.intro--display'),
 
+    gameContainer : document.querySelector(".game_container--hidden"),
+
     possibilities : [
         'pierre.png',
         'feuille.png',
@@ -40,10 +42,11 @@ const shifumi = {
         // Debug
         console.log('init function');
 
-        let arrowElement = document.querySelector('.arrow');
+        let buttonElement = document.getElementById('arrow');
 
-        console.log(arrowElement);
-        arrowElement.addEventListener('click', shifumi.handleStartGame());
+        console.log(buttonElement);
+
+        buttonElement.addEventListener('click', shifumi.handleStartGame);
 
         // Retrieve play possibilities image for found event click
         let imgPlayPossibilities = document.querySelectorAll('.play-possibilities__img');
@@ -57,8 +60,28 @@ const shifumi = {
     },
 
     handleStartGame : function(event){
+        // Debug
+        console.log('function handle stard game');
+        console.log(shifumi.gameContainer.classList);
+        if(shifumi.gameContainer.classList.contains("game_container--hidden")){
+            shifumi.gameContainer.classList.remove("game_container--hidden");
+            shifumi.gameContainer.classList.add("game_container--display");
+            // Debug
+            console.log(shifumi.gameContainer.classList);
 
-        document.querySelector(".game_container--hidden").classList.add("game-container--display");
+            for(let container of shifumi.presentationContainers){
+
+                // Debug
+                console.log(container);
+
+                container.classList.remove("intro--display");
+                container.classList.add("intro--hidden");
+            }
+
+            let buttonHome = document.getElementById('buttonHome');
+            buttonHome.classList.remove('buttonHome--hidden');
+            buttonHome.classList.add('buttonHome--display');
+        }
     },
 
 
