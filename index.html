@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/shifumi.css">
     <title>Shifumi en ligne</title>
 </head>
@@ -35,13 +42,13 @@
 
     </section>
 
-    <button id="arrow" class="arrow intro--display"> &#8623; </button>
+    <button id="arrow" class="arrow intro--display"> Jouer <br> &#8623; </button>
 
     <section class="game_container--hidden">
 
         <div id="play-possibilities" class="play__possibilities--display">
 
-            <p> Atteins 5 points avant l'ordinateur pour gagner ! </p>
+            <p> Atteins 5 points avant l'ordinateur pour gagner, tu n'as qu'à cliquer sur le coup de ton choix ! </p>
 
             <img src="assets/img/pierre.png" alt="pierre" class="play-possibilities__img">
             <img src="assets/img/feuille.png" alt="feuille" class="play-possibilities__img">
@@ -49,6 +56,10 @@
 
         </div> <!-- End div .play_possibilities -->
 
+        <div class="game--winner">
+            <span> <!-- Indicate turn number and when the game is over --> </span>
+            <p> <!-- Indicate round's winner --> </p>
+        </div>
 
         <div id="game" class="game game__validated--display">
 
@@ -62,7 +73,9 @@
 
             </div>
 
-
+            <p id ="game__round" class="game__round--hidden round__number">
+                Round : <span> 1 </span>
+            </p>
 
             <div class="game__computer">
                 <h3 id="computer"> L'ordinateur : <span> 0 </span></h3>
@@ -76,16 +89,13 @@
 
         </div> <!-- End div .game -->
 
-        <div class="game--winner">
-            <span> <!-- Indicate turn number and when the game is over --> </span>
-            <p> <!-- Indicate round's winner --> </p>
-        </div>
+
 
         <button id="play-again" class="play-again--hidden"> Rejouer </button>
 
     </section> <!-- End div .game_container -->
 
-    <button id="buttonHome" class="buttonHome--hidden"> Retourner à l'accueil </button>
+    <a  href="" id="buttonHome" class="buttonHome--hidden"> Retourner à l'accueil</a>
 
     <script src="assets/app.js" type="text/javascript"></script>
 </body>

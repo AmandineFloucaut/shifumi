@@ -8,3 +8,5 @@ https://amandinefloucaut.github.io/shifumi/
 
 - Affichage des round au moment de la fin du jeu
 - Statistiques (en combien de round l'utilisateur bat  l'ordinateur)
+
+
