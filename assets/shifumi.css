@@ -27,7 +27,7 @@ h1 {
     margin: 0.1rem auto;
     background-color: #AADD95;
     border-radius: 20%;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-family: 'Grechen Fuemen', cursive;
     text-transform: uppercase;
 }
@@ -38,7 +38,8 @@ h1 {
     padding: 1rem;
     border: 2px solid #AADD95;
     font-family: 'Roboto', sans-serif;
-    line-height: 1.3rem;
+    line-height: 1.8rem;
+    font-size: 1.5rem;
 }
 
 .presentation__container--display>p {
@@ -199,7 +200,7 @@ button#play-again {
     .game__computer {
         width: 33%;
         margin: 1rem 2rem;
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
     .game__user--img,
