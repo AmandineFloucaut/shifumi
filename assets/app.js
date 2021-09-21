@@ -240,10 +240,10 @@ const shifumi = {
 
         // Retrieve just name of touch image for comparison with computer choice and return this
         // WARNING : in dev environment, slice(36)
-        let userChoice = imageSource.slice(36);
+        //let userChoice = imageSource.slice(36);
 
         // WARNING : in prod environment, slice(54)
-        //let userChoice = imageSource.slice(54);
+        let userChoice = imageSource.slice(54);
 
         shifumi.displayIntroContainer();
 
