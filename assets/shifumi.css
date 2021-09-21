@@ -157,7 +157,11 @@ h1 {
 
 .game--winner>span {
     font-style: oblique;
-    margin-bottom: 1rem;
+
+}
+
+.game--winner>p {
+    margin-top: 1rem;
 }
 
 button#play-again {
