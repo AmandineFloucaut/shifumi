@@ -44,8 +44,6 @@ const shifumi = {
 
         let buttonElement = document.getElementById('arrow');
 
-        console.log(buttonElement);
-
         buttonElement.addEventListener('click', shifumi.handleStartGame);
 
         // Retrieve play possibilities image for found event click
@@ -62,17 +60,12 @@ const shifumi = {
     handleStartGame : function(event){
         // Debug
         console.log('function handle stard game');
-        console.log(shifumi.gameContainer.classList);
+
         if(shifumi.gameContainer.classList.contains("game_container--hidden")){
             shifumi.gameContainer.classList.remove("game_container--hidden");
             shifumi.gameContainer.classList.add("game_container--display");
-            // Debug
-            console.log(shifumi.gameContainer.classList);
 
             for(let container of shifumi.presentationContainers){
-
-                // Debug
-                console.log(container);
 
                 container.classList.remove("intro--display");
                 container.classList.add("intro--hidden");
@@ -94,35 +87,23 @@ const shifumi = {
         // Debug
         console.log('handle winner game function');
 
-        console.log(shifumi.pointsComputer);
-        console.log(shifumi.pointsUser);
-
         let userChoiceValidated = shifumi.userChoice(userChoice);
-        // Debug
-        console.log(userChoiceValidated);
+
         let computerChoiceValidated = shifumi.computerChoice(computerChoice);
-        // Debug
-        console.log(computerChoiceValidated);
 
         if(userChoiceValidated ===  computerChoiceValidated){
-            // Debug
-            console.log('égalité');
+
             shifumi.turn += 1;
-            // Debug
-            console.log(shifumi.turn);
+
             shifumi.roundGameText.textContent = "Round " + shifumi.turn;
-            // Debug
-            console.log(shifumi.roundGameText.textContent);
+
             shifumi.winnerText.textContent = "Egalité !";
-            console.log(shifumi.winnerText.textContent);
         }
         else if(
             (userChoiceValidated === shifumi.possibilities[0] && computerChoiceValidated === shifumi.possibilities[1])
             || (userChoiceValidated === shifumi.possibilities[1] && computerChoiceValidated === shifumi.possibilities[2])
             || (userChoiceValidated === shifumi.possibilities[2] && computerChoiceValidated === shifumi.possibilities[0])
             ){
-                // Debug
-                console.log('ordi gagne');
                 shifumi.pointsComputer += 1;
                 shifumi.turn += 1;
                 shifumi.roundGameText.textContent = "Round " + shifumi.turn;
@@ -134,8 +115,6 @@ const shifumi = {
             || (userChoiceValidated === shifumi.possibilities[1] && computerChoiceValidated === shifumi.possibilities[0])
             || (userChoiceValidated === shifumi.possibilities[2] && computerChoiceValidated === shifumi.possibilities[1])
             ){
-                // Debug
-                console.log('user gagne');
                 shifumi.pointsUser += 1;
                 shifumi.turn += 1;
                 shifumi.roundGameText.textContent = "Round " + shifumi.turn;
@@ -189,9 +168,8 @@ const shifumi = {
     endGame : function(pointsUser, pointsComputer){
 
         console.log("end game function");
+
         if(pointsUser == 5 || pointsComputer == 5){
-            // Debug
-            console.log("end game points user or computer = 5");
 
             shifumi.playPossibilities.className = "play__possibilities--hidden";
 
@@ -210,13 +188,9 @@ const shifumi = {
             shifumi.roundGameText.textContent = "Partie terminée !"
 
             if(pointsUser == 5){
-                // Debug
-                console.log("end game points user = 5");
                 shifumi.winnerText.textContent = "Bravo tu as battu l'ordinateur en " + shifumi.turn + " round !";
             }
             else {
-                // Debug
-                console.log("end game points computer = 5");
                 shifumi.winnerText.textContent = "L'ordinateur t'a battu en " + shifumi.turn + " round, essaie encore !";
             }
         }
@@ -225,7 +199,6 @@ const shifumi = {
     displayIntroContainer : function(){
 
         for(let container of shifumi.presentationContainers){
-            console.log(container);
 
             container.classList.remove("intro--display");
             container.classList.add("intro--hidden");
@@ -235,10 +208,9 @@ const shifumi = {
 
     hiddenIntroContainer : function(){
         for(let container of shifumi.presentationContainers){
-            console.log(container);
+
             container.classList.remove("intro--hidden");
             container.classList.add("intro--display");
-
         }
     },
 
@@ -268,10 +240,10 @@ const shifumi = {
 
         // Retrieve just name of touch image for comparison with computer choice and return this
         // WARNING : in dev environment, slice(36)
-        //let userChoice = imageSource.slice(36);
+        let userChoice = imageSource.slice(36);
 
         // WARNING : in prod environment, slice(54)
-        let userChoice = imageSource.slice(54);
+        //let userChoice = imageSource.slice(54);
 
         shifumi.displayIntroContainer();
 
