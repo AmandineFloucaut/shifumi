@@ -6,6 +6,10 @@ body {
     background-color: #FFF2BA;
 }
 
+.global-container {
+    height: 100vh;
+}
+
 h1,
 .game_container--display,
 .arrow
@@ -37,8 +41,8 @@ h1 {
     line-height: 1.3rem;
 }
 
-.presentation__container {
-    padding: 1rem;
+.presentation__container--display>p {
+    margin: 0.5rem auto;
 }
 
 .presentation__container--display>p>strong {
@@ -51,7 +55,19 @@ h1 {
 
 .intro--hidden {
     display: none;
+    /* transition-property: transform;
+    transition: display 2s; */
+    /* animation: bounce 3s linear; */
 }
+
+/* @keyframes bounce {
+    from {
+        display: block;
+    }
+    to {
+        display: none;
+    }
+} */
 
 .game_container--display {
     display: block;
@@ -66,6 +82,7 @@ h1 {
     text-align: center;
     font-size: 1rem;
     font-style: oblique;
+    margin: 1rem;
 }
 
 .buttonHome--hidden {
@@ -97,14 +114,11 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* font-size: 0.8rem; */
 }
 
 .game__user,
 .game__computer {
-    /* width: 33%; */
     margin: 1rem 0.5rem;
-    /* font-size: 0.8rem; */
 }
 
 .game__user>h3,
@@ -128,7 +142,6 @@ h1 {
 }
 
 .endGame {
-    /* width: 30%; */
     display: block;
     margin: 0.2rem auto;
 }
