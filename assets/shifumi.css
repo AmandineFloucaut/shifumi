@@ -39,7 +39,7 @@ h1 {
     border: 2px solid #AADD95;
     font-family: 'Roboto', sans-serif;
     line-height: 1.8rem;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .presentation__container--display>p {
@@ -189,6 +189,11 @@ button#play-again {
     .game_container--display {
         margin: 4rem 2rem;
         border: 2px solid black;
+    }
+
+    .presentation__container--display,
+    .game_container--display {
+        font-size: 1.5rem;
     }
 
     #play-possibilities>img {
