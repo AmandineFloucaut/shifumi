@@ -39,8 +39,8 @@ const shifumi = {
      * Initialize function
      */
     init : function(){
-        // Debug
-        console.log('init function');
+        // Debug init
+        //console.log('init function');
 
         let buttonElement = document.getElementById('arrow');
 
@@ -58,8 +58,8 @@ const shifumi = {
     },
 
     handleStartGame : function(event){
-        // Debug
-        console.log('function handle stard game');
+        // Debug startGame
+        //console.log('function handle stard game');
 
         if(shifumi.gameContainer.classList.contains("game_container--hidden")){
             shifumi.gameContainer.classList.remove("game_container--hidden");
@@ -84,8 +84,8 @@ const shifumi = {
      * @param {string} computerChoice : name picture
      */
     handleWinnerGame : function(userChoice, computerChoice){
-        // Debug
-        console.log('handle winner game function');
+        // Debug WinnerGame
+        //console.log('handle winner game function');
 
         let userChoiceValidated = shifumi.userChoice(userChoice);
 
@@ -131,8 +131,8 @@ const shifumi = {
      * @param {click} event : click on button play again
      */
     handlePlayAgain : function(event){
-
-        console.log('play again function');
+        // Debug PlayAgain
+        //console.log('play again function');
 
         while (shifumi.userChoicesContainer.firstChild) {
             shifumi.userChoicesContainer.removeChild(shifumi.userChoicesContainer.firstChild);
@@ -166,8 +166,8 @@ const shifumi = {
      * @param {int} pointsComputer
      */
     endGame : function(pointsUser, pointsComputer){
-
-        console.log("end game function");
+        // Debug endGame
+        //console.log("end game function");
 
         if(pointsUser == 5 || pointsComputer == 5){
 
@@ -181,6 +181,7 @@ const shifumi = {
             // Add class endGame for update img display (in block)
             let imgValidatedElement = document.querySelectorAll('.choice__validated--img');
 
+            // change class img validate for display in column at the end game
             for(let img of imgValidatedElement) {
                 img.classList.add('endGame');
             }
@@ -196,31 +197,13 @@ const shifumi = {
         }
     },
 
-    displayIntroContainer : function(){
-
-        for(let container of shifumi.presentationContainers){
-
-            container.classList.remove("intro--display");
-            container.classList.add("intro--hidden");
-
-        }
-    },
-
-    hiddenIntroContainer : function(){
-        for(let container of shifumi.presentationContainers){
-
-            container.classList.remove("intro--hidden");
-            container.classList.add("intro--display");
-        }
-    },
-
     /**
      * Function to retrieve choice user validated
      * @param {click user} event
      * @returns userChoice (just name of picture)
      */
     userChoice : function(event){
-        // Debug
+        // Debug userChoice
         //console.log('user choice function');
 
         let imgElementChoice = event.currentTarget;
@@ -240,12 +223,10 @@ const shifumi = {
 
         // Retrieve just name of touch image for comparison with computer choice and return this
         // WARNING : in dev environment, slice(36)
-        //let userChoice = imageSource.slice(36);
+        let userChoice = imageSource.slice(36);
 
         // WARNING : in prod environment, slice(54)
-        let userChoice = imageSource.slice(54);
-
-        shifumi.displayIntroContainer();
+        //let userChoice = imageSource.slice(54);
 
         return userChoice;
     },
@@ -256,7 +237,7 @@ const shifumi = {
      * @returns
      */
     computerChoice : function(computerChoice){
-        // Debug
+        // Debug computerChoice
         //console.log('computer choice function');
 
         // Generate random number for use this like index of possibilities array
@@ -270,6 +251,7 @@ const shifumi = {
         // Create img element and insert in src attribut the computer choice (where he's click)
         let imgChoiceElement = document.createElement("img");
         imgChoiceElement.src = shifumi.imgComputerValidatedElement.src;
+
         // Insert class name for css and insert in container
         imgChoiceElement.className = "choice__validated--img";
         shifumi.computerChoicesContainer.appendChild(imgChoiceElement);
